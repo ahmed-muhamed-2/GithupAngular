@@ -1,0 +1,71 @@
+<div class="container searchContainer">
+  <div class="search card card-body">
+    <h1>Search GitHub Users</h1>
+    <p class="lead">Enter a username to fetch a user profile and repos</p>
+    <input
+      required
+      (keyup)="username(title)"
+      #title
+      type="text"
+      id="searchUser"
+      class="form-control"
+      placeholder="GitHub Username..."
+    />
+    <div *ngIf="user?.notFound" class="alert alert-danger">user not faund</div>
+  </div>
+</div>
+<br />
+<ng-container *ngIf="user?.name">
+  <div class="card card-body mb-3">
+    <h3 class="text-center">{{ user?.name }}</h3>
+    <div class="row">
+      <div class="col-md-3">
+        <img class="img-fluid mb-2" [src]="user?.avatar_url" />
+        <a
+          class="btn btn-primary btn-block mb-4"
+          target="_blank"
+          [href]="user?.html_url"
+          >View Profile</a
+        >
+      </div>
+      <div class="col-md-9">
+        <span class="badge badge-primary"
+          >Public Repos: {{ user?.public_repos }}</span
+        >
+        <span class="badge badge-secondary"
+          >Public gists: {{ user?.public_gists }}</span
+        >
+        <span class="badge badge-success"
+          >Followers: {{ user?.followers }}</span
+        >
+        <span class="badge badge-info">Following: {{ user?.following }}</span>
+        <br /><br />
+        <ul class="list-group">
+          <li class="list-group-item">Company: {{ user?.company }}</li>
+          <li class="list-group-item">Website/Blog: {{ user?.blog }}</li>
+          <li class="list-group-item">Location: {{ user?.location }}</li>
+          <li class="list-group-item">Member since: {{ user?.created_at }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<br />
+<ng-container *ngIf="!repo?.notFound">
+  <div *ngFor="let repos of repo" class="card card-body mb-2">
+    <div class="row">
+      <div class="col-md-6">
+        <a href="{{ repos?.html_url }}" target="_blank">{{ repos?.name }}</a>
+      </div>
+      <div class="col-md-6">
+        <span class="badge badge-primary"
+          >Stars: {{ repos?.stargazers_count }}</span
+        >
+        <span class="badge badge-secondary"
+          >Watchers: {{ repos?.watchers_count }}</span
+        >
+        <span class="badge badge-success">Forks: {{ repos?.forms_count }}</span>
+      </div>
+    </div>
+  </div>
+</ng-container>

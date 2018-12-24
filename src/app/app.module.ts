@@ -1,16 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { InputUserComponent } from './input-user/input-user.component';
+import { GetUserService } from './serves/get-user.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    InputUserComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [GetUserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
